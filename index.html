@@ -1,81 +1,479 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HyperXTAP Datenschutz & Impressum</title>
+  <title>HyperXTAP – Datenschutz & Impressum</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050508;
+      --bg2: #0a0a12;
+      --accent: #00f0ff;
+      --accent2: #ff2d6b;
+      --accent3: #ffe600;
+      --text: #c8d8e8;
+      --muted: #4a5568;
+      --card: rgba(0, 240, 255, 0.04);
+      --border: rgba(0, 240, 255, 0.15);
+    }
+
+```
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Share Tech Mono', monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Animated grid background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 0;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(40px); }
+}
+
+/* Scanline overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 999;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+/* Header */
+.site-header {
+  text-align: center;
+  margin-bottom: 64px;
+  animation: fadeDown 0.8s ease both;
+}
+
+.logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2.4rem, 8vw, 4.2rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  text-shadow:
+    0 0 20px rgba(0, 240, 255, 0.8),
+    0 0 60px rgba(0, 240, 255, 0.4),
+    0 0 120px rgba(0, 240, 255, 0.2);
+  animation: flicker 6s infinite;
+}
+
+@keyframes flicker {
+  0%, 95%, 100% { opacity: 1; }
+  96% { opacity: 0.85; }
+  97% { opacity: 1; }
+  98% { opacity: 0.9; }
+}
+
+.logo span {
+  color: var(--accent2);
+  text-shadow:
+    0 0 20px rgba(255, 45, 107, 0.8),
+    0 0 60px rgba(255, 45, 107, 0.4);
+}
+
+.tagline {
+  margin-top: 12px;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.header-line {
+  margin: 28px auto 0;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+/* Nav pills */
+.nav-pills {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 56px;
+  animation: fadeDown 0.8s 0.1s ease both;
+  flex-wrap: wrap;
+}
+
+.nav-pill {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  padding: 8px 20px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s;
+  background: var(--card);
+}
+
+.nav-pill:hover {
+  background: rgba(0, 240, 255, 0.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.3);
+}
+
+/* Section blocks */
+.section {
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 32px 36px;
+  position: relative;
+  animation: fadeUp 0.6s ease both;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.section:hover {
+  border-color: rgba(0, 240, 255, 0.35);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.06);
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 20px;
+  width: 60px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.section:nth-child(even)::before {
+  background: var(--accent2);
+}
+
+.section-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+h1.section-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+h2.section-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.section:nth-child(even) h2.section-title {
+  color: var(--accent2);
+  text-shadow: 0 0 16px rgba(255, 45, 107, 0.3);
+}
+
+p {
+  font-size: 0.88rem;
+  line-height: 1.85;
+  color: var(--text);
+  opacity: 0.85;
+}
+
+/* Stand badge */
+.stand-badge {
+  display: inline-block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--accent3);
+  border: 1px solid rgba(255, 230, 0, 0.3);
+  padding: 4px 12px;
+  margin-bottom: 20px;
+  background: rgba(255, 230, 0, 0.05);
+}
+
+/* Contact block */
+.contact-block {
+  background: rgba(0, 240, 255, 0.04);
+  border-left: 2px solid var(--accent);
+  padding: 16px 20px;
+  margin-top: 16px;
+  font-size: 0.85rem;
+  line-height: 2;
+}
+
+.contact-block a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: text-shadow 0.2s;
+}
+
+.contact-block a:hover {
+  text-shadow: 0 0 10px var(--accent);
+}
+
+/* Impressum section */
+.impressum-section {
+  border-color: rgba(255, 45, 107, 0.2);
+}
+
+.impressum-section::before {
+  background: var(--accent2);
+}
+
+.impressum-section h1.section-title {
+  color: var(--accent2);
+  text-shadow: 0 0 20px rgba(255, 45, 107, 0.4);
+}
+
+.impressum-section .contact-block {
+  border-left-color: var(--accent2);
+}
+
+/* Divider */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 48px 0 12px;
+}
+
+.section-divider span {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.4em;
+  color: var(--muted);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* Support email */
+.support-link {
+  display: inline-block;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+  padding-bottom: 2px;
+  transition: all 0.2s;
+}
+
+.support-link:hover {
+  text-shadow: 0 0 12px var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Footer */
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 40px 24px;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+footer::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin-bottom: 24px;
+}
+
+/* Animations */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section:nth-child(1) { animation-delay: 0.15s; }
+.section:nth-child(2) { animation-delay: 0.22s; }
+.section:nth-child(3) { animation-delay: 0.29s; }
+.section:nth-child(4) { animation-delay: 0.36s; }
+.section:nth-child(5) { animation-delay: 0.43s; }
+.section:nth-child(6) { animation-delay: 0.50s; }
+.section:nth-child(7) { animation-delay: 0.57s; }
+.section:nth-child(8) { animation-delay: 0.64s; }
+.section:nth-child(9) { animation-delay: 0.71s; }
+
+@media (max-width: 480px) {
+  .section { padding: 24px 20px; }
+}
+```
+
+  </style>
 </head>
 <body>
 
-  <h1>Datenschutzerklärung</h1>
+  <div class="container">
 
-  <p><strong>Stand:</strong> Mai 2026</p>
+```
+<!-- Header -->
+<header class="site-header">
+  <div class="logo">HYPER<span>XTAP</span></div>
+  <div class="tagline">// nexuru apps – legal &amp; privacy //</div>
+  <div class="header-line"></div>
+</header>
 
-  <p>
-    Verantwortlich für diese App:
-    <br>
-    Jan Phillip Schmidt (Privatperson / App-Entwickler)<br>
-    c/o flexdienst – #21046<br>
-    Kurt-Schumacher-Straße 76<br>
-    67663 Kaiserslautern<br>
-    Deutschland
-    <br><br>
-    E-Mail: nexuru.apps@gmail.com
-  </p>
+<!-- Nav -->
+<nav class="nav-pills">
+  <a class="nav-pill" href="#datenschutz">Datenschutz</a>
+  <a class="nav-pill" href="#impressum">Impressum</a>
+</nav>
 
-  <h2>Allgemeines</h2>
-  <p>
-    HyperXTAP erhebt, speichert oder verarbeitet keine personenbezogenen Daten
-    auf externen Servern.
-    Die App funktioniert vollständig lokal auf dem Endgerät des Nutzers.
-  </p>
+<!-- DATENSCHUTZ -->
+<div id="datenschutz">
 
-  <h2>Lokale Datenspeicherung</h2>
-  <p>
-    Spielstände, Highscores und Einstellungen werden ausschließlich lokal auf dem Gerät gespeichert.
-    Die lokale Speicherung dient ausschließlich der Funktionsfähigkeit der App
-    und erfolgt ohne Zugriff durch den Entwickler.
-  </p>
+  <div class="section">
+    <div class="section-label">// Rechtliches</div>
+    <h1 class="section-title">Datenschutzerklärung</h1>
+    <div class="stand-badge">Stand: Mai 2026</div>
+    <p>Verantwortlich für diese App:</p>
+    <div class="contact-block">
+      Jan Phillip Schmidt (Privatperson / App-Entwickler)<br>
+      c/o flexdienst – #21046<br>
+      Kurt-Schumacher-Straße 76<br>
+      67663 Kaiserslautern<br>
+      Deutschland<br><br>
+      E-Mail: <a href="mailto:nexuru.apps@gmail.com">nexuru.apps@gmail.com</a>
+    </div>
+  </div>
 
-  <h2>Keine Weitergabe an Dritte</h2>
-  <p>
-    Es erfolgt keine Übermittlung von Daten an Dritte,
-    keine Nutzung von Tracking-Tools,
-    keine Analyse-Dienste
-    und keine externen Serververbindungen.
-  </p>
+  <div class="section">
+    <div class="section-label">// 01</div>
+    <h2 class="section-title">Allgemeines</h2>
+    <p>HyperXTAP erhebt, speichert oder verarbeitet keine personenbezogenen Daten auf externen Servern. Die App funktioniert vollständig lokal auf dem Endgerät des Nutzers.</p>
+  </div>
 
-  <h2>Betroffenenrechte</h2>
-  <p>
-    Da keine personenbezogenen Daten durch den Entwickler verarbeitet werden,
-    bestehen Betroffenenrechte ausschließlich im Rahmen lokal gespeicherter Daten
-    auf dem eigenen Gerät.
-    Nutzer können diese Daten jederzeit selbst durch Löschen der App entfernen.
-  </p>
+  <div class="section">
+    <div class="section-label">// 02</div>
+    <h2 class="section-title">Lokale Datenspeicherung</h2>
+    <p>Spielstände, Highscores und Einstellungen werden ausschließlich lokal auf dem Gerät gespeichert. Die lokale Speicherung dient ausschließlich der Funktionsfähigkeit der App und erfolgt ohne Zugriff durch den Entwickler.</p>
+  </div>
 
-  <h2>Beschwerderecht</h2>
-  <p>
-    Betroffene haben das Recht,
-    sich bei einer Datenschutzaufsichtsbehörde zu beschweren.
-    <br><br>
-    Zuständig ist der Landesbeauftragte für Datenschutz und Informationsfreiheit
-    Rheinland-Pfalz (LfDI RLP).
-  </p>
+  <div class="section">
+    <div class="section-label">// 03</div>
+    <h2 class="section-title">Keine Weitergabe an Dritte</h2>
+    <p>Es erfolgt keine Übermittlung von Daten an Dritte, keine Nutzung von Tracking-Tools, keine Analyse-Dienste und keine externen Serververbindungen.</p>
+  </div>
 
-  <h2>Support</h2>
-  <p>
-    nexuru.apps@gmail.com
-  </p>
+  <div class="section">
+    <div class="section-label">// 04</div>
+    <h2 class="section-title">Betroffenenrechte</h2>
+    <p>Da keine personenbezogenen Daten durch den Entwickler verarbeitet werden, bestehen Betroffenenrechte ausschließlich im Rahmen lokal gespeicherter Daten auf dem eigenen Gerät. Nutzer können diese Daten jederzeit selbst durch Löschen der App entfernen.</p>
+  </div>
 
-  <h1>Impressum</h1>
+  <div class="section">
+    <div class="section-label">// 05</div>
+    <h2 class="section-title">Beschwerderecht</h2>
+    <p>Betroffene haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren.<br><br>
+    Zuständig ist der Landesbeauftragte für Datenschutz und Informationsfreiheit Rheinland-Pfalz (LfDI RLP).</p>
+  </div>
 
-  <p>
-    Jan Phillip Schmidt (Privatperson / App-Entwickler)<br>
-    c/o flexdienst – #21046<br>
-    Kurt-Schumacher-Straße 76<br>
-    67663 Kaiserslautern<br>
-    Deutschland
-  </p>
+  <div class="section">
+    <div class="section-label">// Support</div>
+    <h2 class="section-title">Support</h2>
+    <p><a class="support-link" href="mailto:nexuru.apps@gmail.com">nexuru.apps@gmail.com</a></p>
+  </div>
+
+</div>
+
+<!-- Divider -->
+<div class="section-divider">
+  <span>Impressum</span>
+</div>
+
+<!-- IMPRESSUM -->
+<div id="impressum">
+  <div class="section impressum-section">
+    <div class="section-label">// Anbieterkennzeichnung</div>
+    <h1 class="section-title">Impressum</h1>
+    <div class="contact-block">
+      Jan Phillip Schmidt (Privatperson / App-Entwickler)<br>
+      c/o flexdienst – #21046<br>
+      Kurt-Schumacher-Straße 76<br>
+      67663 Kaiserslautern<br>
+      Deutschland
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <footer>
+    &copy; 2026 Jan Phillip Schmidt &nbsp;·&nbsp; HyperXTAP &nbsp;·&nbsp; All rights reserved
+  </footer>
 
 </body>
 </html>
